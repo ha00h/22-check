@@ -5,7 +5,7 @@
 ## 구조
 - `index.html` 홈: 메모 입력·목록(localStorage), 20분 타이머, 의견 보내기, 소개
 - `admin.html` 관리자 의견 게시판 (공개 페이지에서 링크하지 않음, noindex)
-- `js/config.js` 설정: `SLIME_SRC`(슬라임 교체), `FEEDBACK_API_BASE`(공개, POST /api/feedback), `ADMIN_API_BASE`(Tailscale 내부, GET /api/feedback + `X-Admin-Key`)
+- `js/config.js` 설정: `SLIME_SHEET`·`SLIME_FRAMES_MS`(슬라임 스프라이트·프레임 시간), `FEEDBACK_API_BASE`(공개, POST /api/feedback), `ADMIN_API_BASE`(Tailscale 내부, GET /api/feedback + `X-Admin-Key`)
 - 비밀키는 코드에 넣지 않습니다. 검증과 5회 실패 시 15분 차단은 서버가 담당합니다.
 
 ## 서버 응답 규칙 (예정)
@@ -18,3 +18,4 @@
 - 수정: 의견은 400·413일 때만 폐기, 빈 의견은 안내 문구만 표시하고 보관하지 않음
 - 의견 서버 주소 연결(FEEDBACK 10000 Funnel, ADMIN 9443 tailnet)
 - 관리자: 의견 날짜는 서버 수신 시각 우선, 없거나 0이면 "날짜 없음"
+- 슬라임을 6프레임 도트 스프라이트로 교체(840ms 루프, x7, pixelated)

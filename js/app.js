@@ -5,8 +5,19 @@
   var OUTBOX_KEY = '22check.outbox.v1';
   var $ = function (id) { return document.getElementById(id); };
 
-  // 슬라임 이미지 (config 한 곳에서만 지정)
-  document.querySelectorAll('img.slime').forEach(function (img) { img.src = C.SLIME_SRC; });
+  // 슬라임 스프라이트 (프레임마다 시간이 달라 JS로 넘김, 화면에 보일 때만)
+  var slimes = document.querySelectorAll('.slime');
+  slimes.forEach(function (el) { el.style.backgroundImage = 'url(' + C.SLIME_SHEET + ')'; });
+  var still = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var frame = 0;
+  function slimeStep() {
+    frame = (frame + 1) % C.SLIME_FRAMES_MS.length;
+    slimes.forEach(function (el) {
+      if (el.offsetParent !== null || el.closest('.ov:not([hidden])')) el.style.backgroundPositionX = (frame * 100 / (C.SLIME_FRAMES_MS.length - 1)) + '%';
+    });
+    setTimeout(slimeStep, C.SLIME_FRAMES_MS[frame]);
+  }
+  if (!still) setTimeout(slimeStep, C.SLIME_FRAMES_MS[0]);
 
   function load(key) { try { return JSON.parse(localStorage.getItem(key)) || []; } catch (e) { return []; } }
   function save(key, v) { localStorage.setItem(key, JSON.stringify(v)); }

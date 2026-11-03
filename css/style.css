@@ -14,7 +14,7 @@ label{display:block;font-size:13px;font-weight:600;color:var(--sub);margin:10px 
 .in::placeholder{color:var(--muted)}.in:focus{outline:2px solid var(--sky);border-color:var(--primary)}
 textarea.in{height:76px;resize:vertical}
 .auto{font-size:13px;color:var(--sub);background:var(--bg);border-radius:8px;padding:8px 12px;margin:10px 0}
-.empty{text-align:center;padding:12px 0;color:var(--sub);font-size:14px}.empty img{width:96px;height:96px}
+.empty{text-align:center;padding:12px 0;color:var(--sub);font-size:14px}.empty .slime{margin:0 auto 4px}
 .memo{border-top:1px solid var(--border);padding:12px 0}.memo:first-child{border:0}
 .meta{font-size:12px;color:var(--muted)}.meta b{color:var(--primary-dark);font-weight:600}
 .memo p{font-size:14px;margin-top:4px;white-space:pre-wrap;word-break:break-word}
@@ -27,8 +27,7 @@ textarea.in{height:76px;resize:vertical}
 .center{margin-top:120px;text-align:center}.center .icon{font-size:44px}.center p{color:var(--sub);font-size:14px}
 /* 타이머 오버레이 */
 .ov{position:fixed;inset:0;z-index:100;background:var(--navy);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;user-select:none;-webkit-user-select:none}
-.ov img{width:240px;height:240px;animation:read 3s ease-in-out infinite;transform-origin:50% 100%}
 .ov .tap{margin-top:28px;font-size:16px;color:var(--overlay-sub)}
-@keyframes read{0%,100%{transform:none}50%{transform:scaleY(.92) scaleX(1.05)}75%{transform:rotate(-6deg)}}
-@media (prefers-reduced-motion:reduce){.ov img{animation:none}}
 .note{font-size:12px;color:var(--muted);margin:-4px 0 10px}
+.slime{--s:7;width:calc(32px*var(--s));height:calc(32px*var(--s));background-repeat:no-repeat;background-position:0 0;background-size:calc(192px*var(--s)) 100%;image-rendering:crisp-edges;image-rendering:pixelated}
+.slime.s3{--s:3}.slime.s7{--s:7}
