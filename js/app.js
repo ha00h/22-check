@@ -109,7 +109,8 @@
   $('fbForm').addEventListener('submit', function (e) {
     e.preventDefault();
     var text = $('fbText').value.trim();
-    if (!text) { $('fbText').focus(); return; }
+    if (!text) { $('fbErr').hidden = false; $('fbText').focus(); return; }
+    $('fbErr').hidden = true;
     var box = load(OUTBOX_KEY);
     box.push({ id: uid(), text: text, createdAt: Date.now() });
     save(OUTBOX_KEY, box);
