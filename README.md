@@ -9,9 +9,10 @@
 - 비밀키는 코드에 넣지 않습니다. 검증과 5회 실패 시 15분 차단은 서버가 담당합니다.
 
 ## 서버 응답 규칙 (예정)
-- POST /api/feedback `{id,text,createdAt}` → 2xx 또는 409(중복 id)면 완료
+- POST /api/feedback `{id,text,createdAt}` → 2xx 또는 409(중복 id)면 완료, 400·413(잘못된 내용)이면 폐기, 그 외(404·429·5xx·네트워크 오류 등)는 보관 후 재전송
 - GET /api/feedback → 200 `[{id,text,createdAt}]` / 401 `{remaining}` / 429(+Retry-After) 차단
 
 ## 변경 기록
 - 초기화: README, index.html 자리표시
 - 프론트 1차: 메모·타이머(실제 시간 기준, Wake Lock)·의견 임시 보관함(1분마다 재전송, id 중복 제거)·관리자 화면 상태 구현. 서버 주소는 아직 비어 있음.
+- 수정: 의견은 400·413일 때만 폐기, 빈 의견은 안내 문구만 표시하고 보관하지 않음
