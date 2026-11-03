@@ -6,14 +6,15 @@
   var key = '';
   function show(id) { ['login', 'list', 'blocked', 'off'].forEach(function (s) { $(s).hidden = s !== id; }); }
   function pad(n) { return (n < 10 ? '0' : '') + n; }
-  function fmt(t) { var d = new Date(t); return d.getFullYear() + '.' + pad(d.getMonth() + 1) + '.' + pad(d.getDate()) + ' ' + pad(d.getHours()) + ':' + pad(d.getMinutes()); }
+  function when(it) { var c = [it.receivedAt, it.createdAt]; for (var i = 0; i < c.length; i++) { var d = c[i] ? new Date(c[i]) : null; if (d && !isNaN(d.getTime()) && d.getTime() > 86400000) return d; } return null; }
+  function fmt(d) { if (!d) return '날짜 없음'; return d.getFullYear() + '.' + pad(d.getMonth() + 1) + '.' + pad(d.getDate()) + ' ' + pad(d.getHours()) + ':' + pad(d.getMinutes()); }
 
   function render(items) {
-    items.sort(function (a, b) { return new Date(b.createdAt) - new Date(a.createdAt); });
+    items.sort(function (a, b) { return ((when(b) || 0) - (when(a) || 0)); });
     var box = $('items'); box.textContent = '';
     items.forEach(function (it) {
       var el = document.createElement('div'); el.className = 'memo';
-      var m = document.createElement('div'); m.className = 'meta'; m.textContent = fmt(it.createdAt);
+      var m = document.createElement('div'); m.className = 'meta'; m.textContent = fmt(when(it));
       var p = document.createElement('p'); p.textContent = it.text;
       el.append(m, p); box.append(el);
     });
