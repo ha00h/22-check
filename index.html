@@ -1,1 +1,54 @@
-<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>22 체크</title></head><body><p>준비 중이에요.</p></body></html>
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#F7F8FC">
+<title>22 체크</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="hd"><h1 class="logo">22 <b>체크</b></h1><div class="date" id="today"></div></header>
+  <button class="btn xl" id="startBtn" type="button">📖 독서 시작 (20분)</button>
+
+  <form class="card" id="memoForm" novalidate>
+    <h2 class="h2">오늘의 메모</h2>
+    <label for="title">책 제목</label>
+    <input class="in" id="title" maxlength="100" placeholder="선택" autocomplete="off">
+    <label for="content">내용 <span class="req">*</span></label>
+    <textarea class="in" id="content" maxlength="2000" placeholder="읽고 떠오른 생각을 적어 주세요 (필수)"></textarea>
+    <div class="auto" id="autoDate"></div>
+    <div class="msg err" id="memoErr" hidden>내용을 입력해 주세요.</div>
+    <button class="btn" type="submit">저장</button>
+  </form>
+
+  <section class="card">
+    <h2 class="h2">이전 메모 <span class="badge" id="memoCount">0</span></h2>
+    <div id="memoList"></div>
+    <div class="empty" id="memoEmpty" hidden><img class="slime" alt="" width="96" height="96"><br>아직 메모가 없어요.<br>첫 독서 후 한 줄을 남겨 보세요!</div>
+  </section>
+
+  <form class="card" id="fbForm" novalidate>
+    <h2 class="h2">다음 기능 의견 보내기</h2>
+    <div class="row">
+      <input class="in" id="fbText" maxlength="1000" placeholder="이런 기능이 있으면 좋겠어요…" autocomplete="off" aria-label="의견">
+      <button class="btn sm" type="submit">보내기</button>
+    </div>
+    <div class="msg warn" id="fbPending" hidden>⏳ 잠시 후 다시 전송돼요. 입력한 의견은 저장되어 있어요.</div>
+    <div class="msg ok" id="fbOk" hidden>✅ 의견을 보냈어요. 고마워요!</div>
+  </form>
+
+  <footer class="foot">🐢 역행자를 읽고 만들었어요<br><span>하루 20분 독서·글쓰기, 22전략 실천</span></footer>
+</div>
+
+<div class="ov" id="overlay" role="button" aria-label="화면을 터치하면 독서 타이머 종료" hidden>
+  <img class="slime" alt="책 읽는 슬라임" width="240" height="240">
+  <div class="tap">화면을 터치하면 종료</div>
+</div>
+
+<script src="js/config.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
