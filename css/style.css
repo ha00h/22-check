@@ -31,3 +31,4 @@ textarea.in{height:76px;resize:vertical}
 .ov .tap{margin-top:28px;font-size:16px;color:var(--overlay-sub)}
 @keyframes read{0%,100%{transform:none}50%{transform:scaleY(.92) scaleX(1.05)}75%{transform:rotate(-6deg)}}
 @media (prefers-reduced-motion:reduce){.ov img{animation:none}}
+.note{font-size:12px;color:var(--muted);margin:-4px 0 10px}
