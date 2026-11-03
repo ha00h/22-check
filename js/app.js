@@ -95,7 +95,7 @@
         }).then(function (r) {
           // 2xx 또는 409(이미 받은 id) → 전송 완료로 처리 (서버가 id로 중복 제거)
           if (r.ok || r.status === 409) sent.push(item.id);
-          else if (r.status >= 400 && r.status < 500 && r.status !== 429) sent.push(item.id); // 재시도해도 안 되는 요청은 폐기
+          else if (r.status === 400 || r.status === 413) sent.push(item.id); // 내용이 잘못된 요청만 폐기, 나머지는 보관 후 재시도
         }).catch(function () {});
       });
     }, Promise.resolve()).then(function () {
